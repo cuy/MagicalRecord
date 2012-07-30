@@ -212,6 +212,10 @@ NSString * const kMagicalRecordImportRelationshipTypeKey            = @"type";  
         {
             NSEntityDescription *entityDescription = [relationshipInfo destinationEntity];
             relatedObject = [entityDescription MR_createInstanceInContext:[self managedObjectContext]];
+            if (![[self managedObjectContext] obtainPermanentIDsForObjects:[NSArray arrayWithObject:relatedObject] error:nil])
+            {
+                DDLogError(@"unable to obtain object id for relatedObject", relatedObject);
+            }
         }
         [relatedObject MR_importValuesForKeysWithObject:localObjectData];
         
