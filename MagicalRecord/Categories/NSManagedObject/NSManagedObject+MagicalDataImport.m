@@ -36,7 +36,7 @@ NSString * const kMagicalRecordImportRelationshipTypeKey            = @"type";  
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[[self class] instanceMethodSignatureForSelector:selector]];
         [invocation setSelector:selector];
         [invocation setTarget:self];
-        [invocation setArgument:(__bridge void *)(value) atIndex:2];
+        [invocation setArgument:&value atIndex:2];
         [invocation invoke];
         BOOL returnValue;
         [invocation getReturnValue:&returnValue];
